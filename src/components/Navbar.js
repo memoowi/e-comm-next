@@ -11,7 +11,7 @@ export default function Navbar() {
   const router = useRouter();
 
   const toggleMenu = () => {
-    console.log(open);
+    // console.log(open);
     setOpen(!open);
   };
 
@@ -44,7 +44,12 @@ export default function Navbar() {
         </button>
       </nav>
 
-      <div className={"absolute flex flex-col gap-2 bg-white shadow-lg top-20 right-4 py-4 min-w-40 rounded-md transition-all duration-300 ease-in-out origin-top-right " + (open ? "scale-100 opacity-100" : "scale-0 opacity-0")}>
+      <div
+        className={
+          "absolute flex flex-col gap-2 bg-white shadow-lg top-20 right-4 py-4 min-w-40 rounded-md transition-all duration-300 ease-in-out origin-top-right " +
+          (open ? "scale-100 opacity-100" : "scale-0 opacity-0")
+        }
+      >
         <Link href="/login" className="py-2 px-4 hover:bg-gray-100 text-start">
           Login
         </Link>

@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Config from "./config";
 
 export function useAuth(redirectTo = "/login") {
   const [user, setUser] = useState(null);
