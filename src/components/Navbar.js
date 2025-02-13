@@ -1,9 +1,10 @@
 "use client";
 import Config from "@/core/config";
+import { useAuth } from "@/core/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { CiSearch, CiShoppingCart, CiUser } from "react-icons/ci";
 
 export default function Navbar() {
@@ -19,6 +20,8 @@ export default function Navbar() {
     localStorage.removeItem("token");
     router.push("/login");
   };
+
+  const user = useAuth("/");
 
   return (
     <header className="flex justify-between items-center px-6 py-4 sticky top-0 z-30 bg-white shadow">
@@ -50,31 +53,44 @@ export default function Navbar() {
           (open ? "scale-100 opacity-100" : "scale-0 opacity-0")
         }
       >
-        <Link href="/login" className="py-2 px-4 hover:bg-gray-100 text-start">
-          Login
-        </Link>
-        <Link
-          href="/register"
-          className="py-2 px-4 hover:bg-gray-100 text-start"
-        >
-          Register
-        </Link>
-        <Link
-          href="/profile"
-          className="py-2 px-4 hover:bg-gray-100 text-start"
-        >
-          Profile
-        </Link>
-        <Link href="/order" className="py-2 px-4 hover:bg-gray-100 text-start">
-          My Order
-        </Link>
-        <button
-          type="button"
-          onClick={logout}
-          className="py-2 px-4 hover:bg-gray-100 text-start"
-        >
-          Logout
-        </button>
+        {user ? (
+          <Fragment>
+            <Link
+              href="/profile"
+              className="py-2 px-4 hover:bg-gray-100 text-start"
+            >
+              Profile
+            </Link>
+            <Link
+              href="/order"
+              className="py-2 px-4 hover:bg-gray-100 text-start"
+            >
+              My Order
+            </Link>
+            <button
+              type="button"
+              onClick={logout}
+              className="py-2 px-4 hover:bg-gray-100 text-start"
+            >
+              Logout
+            </button>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <Link
+              href="/login"
+              className="py-2 px-4 hover:bg-gray-100 text-start"
+            >
+              Login
+            </Link>
+            <Link
+              href="/register"
+              className="py-2 px-4 hover:bg-gray-100 text-start"
+            >
+              Register
+            </Link>
+          </Fragment>
+        )}
       </div>
     </header>
   );

@@ -6,7 +6,7 @@ import OrderAction from "./_partials/OrderAction";
 import { Fragment } from "react";
 
 export default async function ProductPage({ params }) {
-  const slug = await params.slug;
+  const {slug} = await params;
 
   const data = await fetch(Config.baseApiUrl() + "product/" + slug, {
     headers: {

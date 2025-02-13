@@ -10,6 +10,7 @@ import { CiCircleAlert } from "react-icons/ci";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/core/useAuth";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -73,6 +74,12 @@ export default function RegisterForm() {
       setLoading(false);
     }
   };
+
+  const user = useAuth();
+    if (user) {
+      window.location.href = "/";
+      return;
+    };
 
   return (
     <form

@@ -2,6 +2,7 @@
 import CustomInput from "@/components/CustomInput";
 import FilledButton from "@/components/FilledButton";
 import Config from "@/core/config";
+import { useAuth } from "@/core/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -58,6 +59,12 @@ export default function LoginForm() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const user = useAuth();
+  if (user) {
+    window.location.href = "/";
+    return;
   };
 
   return (

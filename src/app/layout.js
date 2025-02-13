@@ -1,5 +1,6 @@
 import Config from "@/core/config";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: {
@@ -21,7 +22,8 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-      {children}
+        <Toaster position="top-center" />
+        {children}
       </body>
     </html>
   );
